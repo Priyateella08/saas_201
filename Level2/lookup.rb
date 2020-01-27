@@ -40,7 +40,7 @@ def resolve(dns_records, lookup_chain, domain)
   	if (dns_records.fetch("CNAME").has_key?(domain))
     	lookup_chain.push(dns_records.fetch("CNAME").fetch(domain))
     	lookup_chain = resolve(dns_records, lookup_chain, lookup_chain.last)
-  	else if (dns_records.fetch("A").has_key?(domain))
+  	elsif (dns_records.fetch("A").has_key?(domain))
     	lookup_chain.push(dns_records.fetch("A").fetch(domain))
   	else
     	lookup_chain.push("Error: record not found for " + domain)
