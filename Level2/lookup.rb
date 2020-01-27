@@ -20,7 +20,7 @@ domain = get_command_line_argument
 dns_raw = File.readlines("zone")
 
 def parse_dns(dns_raw)
-	record_array=[]
+	record_array=Array.new
 	dns_raw.each do |row|
 	column=row.split(",")
 	record_array.push(column)
@@ -28,7 +28,7 @@ def parse_dns(dns_raw)
 	dns_records = Hash.new do |hash, key|
     	hash[key] = {}
   	end
-  	record_arr.each do |column|
+  	record_array.each do |column|
     	record_key = (column[0].to_s).strip
     	domain_key = (column[1].to_s).strip
     	dns_records[record_key][domain_key] = (column[2].to_s).strip
