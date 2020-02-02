@@ -8,34 +8,26 @@ class Todo
   end
 
   def overdue?
-    if @due_date < Date.today
-      true
-    end
+     Date.today > @due_date 
   end
 
   def due_today?
-    if @due_date == Date.today
-      true
-    end
+    @due_date == Date.today
   end
 
   def due_later?
-    if @due_date > Date.today
-      return true
-    end
+   Date.today < @due_date
   end
 
   def to_displayable_string
-    string = "[]"
-    if @completed
-      string = "[X]"
+     display_status="[]"
+     if @completed
+      display_status="[X]"
     end
-    if (@due_date == Date.today)
-      string = string + " #{@text}"
-    else
-      string = string + " #{@text}" + " #{@due_date}"
-      return string
+    if (@due_date != Date.today)
+      display_date=@due_date
     end
+      "#{display_status} #{@text} #{display_date}"
   end
 end
 
